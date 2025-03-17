@@ -1,5 +1,5 @@
-```md
-# Inkspace ✍️
+
+## Inkspace ✍️
 
 **Inkspace** is a platform for reading and writing blogs about **Web Technology**, featuring a Markdown Editor and AI-powered content generation using Gemini 🎯
 
@@ -19,5 +19,5 @@
 🔹 **AI Integration:** Google Gemini API  
 🔹 **Database:** Firestore or Supabase *(depending on setup)*  
 🔹 **Deployment:** Vercel or Firebase Hosting  
-```
+
 

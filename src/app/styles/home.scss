@@ -1,0 +1,159 @@
+// Custom styles for Inkspace home page
+
+// Gradient text effect with glow
+.gradient-text {
+    background: linear-gradient(135deg, #ff79c6, #bd93f9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    text-shadow: 0px 0px 10px rgba(189, 147, 249, 0.6);
+  }
+  
+  // Hero section with animated gradient
+  .hero.is-link {
+    background: linear-gradient(135deg, #3273dc, #6b46c1);
+    background-size: 400% 400%;
+    animation: gradientMove 6s ease infinite;
+  }
+  
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  // Blog card styling with scale and glow
+  .blog-card, .featured-blog-card {
+    display: block;
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px) scale(1.02);
+      
+      .card {
+        box-shadow: 0 10px 30px rgba(107, 70, 193, 0.3);
+      }
+    }
+  
+    .card {
+      height: 100%;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(135deg, #3273dc, #6b46c1);
+      }
+    }
+  }
+  
+  // Editor preview with neon border
+  .editor-preview {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 2px solid transparent;
+    animation: neonGlow 2s linear infinite alternate;
+  
+    @keyframes neonGlow {
+      from { border-color: #6b46c1; box-shadow: 0px 0px 10px #6b46c1; }
+      to { border-color: #bd93f9; box-shadow: 0px 0px 20px #bd93f9; }
+    }
+  
+    .editor-toolbar {
+      background: #f5f5f5;
+      padding: 10px;
+      border-bottom: 1px solid #e0e0e0;
+      
+      .editor-dot {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin-right: 6px;
+        
+        &:nth-child(1) { background-color: #ff5f56; }
+        &:nth-child(2) { background-color: #ffbd2e; }
+        &:nth-child(3) { background-color: #27c93f; }
+      }
+    }
+  
+    .editor-content {
+      padding: 20px;
+      font-family: monospace;
+      font-size: 14px;
+      color: #333;
+      
+      h3 {
+        color: #6b46c1;
+        margin-bottom: 1rem;
+      }
+      
+      pre {
+        background: #f5f5f5;
+        padding: 1rem;
+        border-radius: 4px;
+        margin-top: 1rem;
+      }
+    }
+  }
+  
+  // Footer with fade-in effect
+  .footer {
+    background-color: #f9f9f9;
+    padding: 3rem 1.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+    animation-delay: 0.5s;
+  
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin-bottom: 0.5rem;
+        
+        a {
+          color: #4a4a4a;
+          
+          &:hover {
+            color: #3273dc;
+          }
+        }
+      }
+    }
+    
+    hr {
+      background-color: #e0e0e0;
+      margin: 2rem 0;
+    }
+  }
+  
+  // Responsive adjustments
+  @media screen and (max-width: 768px) {
+    .hero-body {
+      padding: 3rem 1.5rem;
+    }
+    
+    .editor-preview {
+      margin-top: 2rem;
+    }
+  }
+  

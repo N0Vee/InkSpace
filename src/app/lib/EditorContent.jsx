@@ -1,0 +1,48 @@
+'use client'
+
+import dynamic from 'next/dynamic';
+
+const Typewriter = dynamic(() => import('react-typewriter-effect'), { ssr: false });
+
+const BlogComponent = () => {
+  return (
+    <div className="editor-content">
+      <h3># Write your amazing tech blog</h3>
+      <p>Share your innovative ideas and thoughts here...</p>
+      <pre>
+        <code>
+          <Typewriter
+            textStyle={{
+              fontFamily: 'monospace',
+              fontSize: '16px',
+              color: '#000',
+            }}
+            startDelay={500}
+            cursorColor="black"
+            multiText={[
+              `console.log('InkSpace');`,
+              `print('InkSpace')`,
+              `std::cout << "InkSpace";`,
+              `echo "InkSpace"`,
+              `printf("InkSpace");`,
+              `document.write('InkSpace');`,
+              `System.out.println("InkSpace");`,
+              `puts("InkSpace");`,
+              `print("InkSpace")`,
+              `echo "InkSpace" > /dev/console`,
+              `alert("InkSpace");`,
+              `printf "InkSpace"`,
+              `Write-Host "InkSpace"`,
+              `echo 'InkSpace'`
+            ]}
+            multiTextDelay={1500}
+            typeSpeed={100}
+            cursor={true}
+          />
+        </code>
+      </pre>
+    </div>
+  );
+};
+
+export default BlogComponent;

@@ -35,19 +35,19 @@ export default function Home() {
 
     if (loading) {
         return <Loading />;
-      }
-    
-      if (error) {
+    }
+
+    if (error) {
         return <div className="error-container">
-          <div className="container has-text-centered py-6">
-            <h2 className="title is-3 has-text-danger">Oops!</h2>
-            <p className="subtitle">{error}</p>
-            <button className="button is-primary mt-4" onClick={() => window.location.reload()}>
-              Try Again
-            </button>
-          </div>
+            <div className="container has-text-centered py-6">
+                <h2 className="title is-3 has-text-danger">Oops!</h2>
+                <p className="subtitle">{error}</p>
+                <button className="button is-primary mt-4" onClick={() => window.location.reload()}>
+                    Try Again
+                </button>
+            </div>
         </div>;
-      }
+    }
 
     const featuredBlogs = blogs.slice(0, 3); // Get the first 3 blogs as featured
 
@@ -60,7 +60,7 @@ export default function Home() {
             <FeaturedSection featuredBlogs={featuredBlogs} />
 
             {/* All Blogs Section */}
-            <BlogSection blogs={ blogs }/>
+            <BlogSection blogs={blogs} />
 
             {/* Write New Section */}
             <section className="section">

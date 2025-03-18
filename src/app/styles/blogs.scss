@@ -1,0 +1,173 @@
+// Color variables
+$primary-pink: #ff79c6;
+$secondary-purple: #bd93f9;
+$deep-teal: #1a9f8e;
+$midnight-blue: #192a56;
+$soft-lavender: #d9d3eb;
+$rich-black: #171717;
+$warm-gray: #f9f9f9;
+
+.navbar {
+  background: linear-gradient(270deg, white 0%, $primary-pink 20%, #14161a 100%);
+  padding: 0.3rem 0;
+  transition: background-color 0.3s ease;
+  
+  // Add a subtle background when scrolling
+  &.is-scrolled {
+    background-color: rgba(20, 22, 26, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    .navbar-item {
+      padding: 0.5rem 1rem;
+      
+      .logo {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+        letter-spacing: -0.5px;
+        
+        .accent {
+          color: $primary-pink;
+        }
+      }
+    }
+    
+    .navbar-burger {
+      color: white;
+      
+      span {
+        height: 2px;
+        background-color: white;
+      }
+      
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  
+  .navbar-menu {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    
+    .navbar-start {
+      flex: 1;
+    }
+    
+    .navbar-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      .navbar-item {
+        color: rgba(255, 255, 255, 0.85);
+        font-weight: 500;
+        transition: color 0.2s ease;
+        padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
+        position: relative;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 0;
+          height: 2px;
+          background-color: $primary-pink;
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+        }
+        
+        &:hover, &.is-active {
+          background-color: transparent;
+          color: white;
+          
+          &::after {
+            width: 80%;
+          }
+        }
+        
+        &.highlight {
+          color: white;
+          
+          .icon {
+            margin-right: 0.5rem;
+            color: $primary-pink;
+          }
+          
+          &:hover {
+            transform: translateY(-1px);
+          }
+        }
+      }
+    }
+    
+    .navbar-end {
+      flex: 1;
+    }
+    
+    .buttons {
+      margin-left: 0.5rem;
+      
+      .button {
+        border-radius: 4px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        
+        &.is-primary {
+          background-color: $primary-pink;
+          border-color: transparent;
+          
+          &:hover {
+            background-color: darken($primary-pink, 5%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+          }
+        }
+        
+        &.is-light {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-color: transparent;
+          color: white;
+          
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+          }
+        }
+        
+        .icon {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+  
+  // Responsive navbar menu
+  @media screen and (max-width: 1023px) {
+    .navbar-menu.is-active {
+      background-color: rgba(20, 22, 26, 0.95);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      display: block;
+      
+      .navbar-center {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        
+        .navbar-item {
+          width: 100%;
+          text-align: center;
+          color: rgba(255, 255, 255, 0.8);
+          
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+          }
+        }
+      }
+    }
+  }
+}

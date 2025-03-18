@@ -86,7 +86,7 @@ export default function Home() {
             <section className="section has-background-light">
                 <div className="container">
                     <h2 className="title has-text-centered">
-                        All <span className="gradient-text">Blogs</span>
+                        <span className='has-text-black'>All </span><span className="gradient-text">Blogs</span>
                     </h2>
                     <p className="subtitle has-text-centered mb-6">
                         Explore all articles on web technology
@@ -99,9 +99,9 @@ export default function Home() {
                                     <a className="blog-card">
                                         <div className="card">
                                             <div className="card-content">
-                                                <p className="title is-4">{blog.title}</p>
+                                                <p className="title is-4 has-text-white">{blog.title}</p>
                                                 <div className="content">
-                                                    <div dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 150) + '...' }} />
+                                                    <div dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 120) + '...' }} />
                                                 </div>
                                                 <div className="mt-4 is-flex is-justify-content-space-between is-align-items-center">
                                                     <span className="tag is-info">Web Tech</span>

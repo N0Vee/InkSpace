@@ -1,159 +1,476 @@
-// Custom styles for Inkspace home page
+// Inkspace updated color theme
+// New color palette with glowing pink preserved
 
-// Gradient text effect with glow
+// Color variables
+$primary-pink: #ff79c6;
+$secondary-purple: #bd93f9;
+$deep-teal: #1a9f8e;
+$midnight-blue: #192a56;
+$soft-lavender: #d9d3eb;
+$rich-black: #171717;
+$warm-gray: #f9f9f9;
+
+strong {
+    color: $rich-black;
+}
+
+
+// Gradient text effect with enhanced pink glow
 .gradient-text {
-    background: linear-gradient(135deg, #ff79c6, #bd93f9);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    display: inline-block;
-    text-shadow: 0px 0px 10px rgba(189, 147, 249, 0.6);
+  background: linear-gradient(135deg, $primary-pink, $secondary-purple);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  text-shadow: 0px 0px 12px rgba($primary-pink, 0.8);
+}
+
+// Hero section with animated colorful object
+.hero.is-link {
+  position: relative;
+  background: $midnight-blue;
+  overflow: hidden;
+ 
+  .title {
+    color: white;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 3.5rem; // Increased title size
+    position: relative;
+    z-index: 2;
+  }
+ 
+  .subtitle {
+    color: white;
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
   }
   
-  // Hero section with animated gradient
-  .hero.is-link {
-    background: linear-gradient(135deg, #3273dc, #6b46c1);
+  // Colorful moving object
+  &::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #FF5F6D, #FFC371, #2CCCFF, #20E3B2);
     background-size: 400% 400%;
-    animation: gradientMove 6s ease infinite;
+    filter: blur(30px);
+    opacity: 0.7;
+    top: -100px;
+    right: -100px;
+    animation: moveObject 15s ease-in-out infinite;
+    z-index: 1;
   }
-  
-  @keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+}
+
+@keyframes moveObject {
+  0% { 
+    transform: translate(0, 0) scale(1);
+    background-position: 0% 50%;
   }
+  25% { 
+    transform: translate(-200px, 100px) scale(1.5);
+    background-position: 50% 100%;
+  }
+  50% { 
+    transform: translate(0, 200px) scale(1);
+    background-position: 100% 50%;
+  }
+  75% { 
+    transform: translate(200px, 100px) scale(1.5);
+    background-position: 50% 0%;
+  }
+  100% { 
+    transform: translate(0, 0) scale(1);
+    background-position: 0% 50%;
+  }
+}
+
+// Blog card styling with scale and enhanced glow
+.blog-card, .featured-blog-card {
+  display: block;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   
-  // Blog card styling with scale and glow
-  .blog-card, .featured-blog-card {
-    display: block;
-    height: 100%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-5px) scale(1.02);
     
-    &:hover {
-      transform: translateY(-5px) scale(1.02);
+    .card {
+      box-shadow: 0 10px 30px rgba($primary-pink, 0.3);
+    }
+  }
+
+  .card {
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(135deg, $primary-pink, $deep-teal);
+    }
+    
+    .card-content {
+      .title {
+        color: $rich-black;
+      }
       
-      .card {
-        box-shadow: 0 10px 30px rgba(107, 70, 193, 0.3);
+      .subtitle {
+        color: $midnight-blue;
+        opacity: 0.8;
+      }
+      
+      .content {
+        color: #4a4a4a;
+      }
+      
+      .tag {
+        background: $soft-lavender;
+        color: $midnight-blue;
+        
+        &.is-primary {
+          background: rgba($primary-pink, 0.2);
+          color: darken($primary-pink, 15%);
+        }
       }
     }
-  
-    .card {
-      height: 100%;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.3s ease;
+  }
+}
+
+// Featured blog card with additional styling
+.featured-blog-card {
+  .card {
+    &::before {
+      height: 6px;
+      background: linear-gradient(135deg, $primary-pink, $secondary-purple);
+    }
+    
+    .card-image {
       position: relative;
       
-      &::before {
-        content: '';
+      &::after {
+        content: 'Featured';
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(135deg, #3273dc, #6b46c1);
-      }
-    }
-  }
-  
-  // Editor preview with neon border
-  .editor-preview {
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    border: 2px solid transparent;
-    animation: neonGlow 2s linear infinite alternate;
-  
-    @keyframes neonGlow {
-      from { border-color: #6b46c1; box-shadow: 0px 0px 10px #6b46c1; }
-      to { border-color: #bd93f9; box-shadow: 0px 0px 20px #bd93f9; }
-    }
-  
-    .editor-toolbar {
-      background: #f5f5f5;
-      padding: 10px;
-      border-bottom: 1px solid #e0e0e0;
-      
-      .editor-dot {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        margin-right: 6px;
-        
-        &:nth-child(1) { background-color: #ff5f56; }
-        &:nth-child(2) { background-color: #ffbd2e; }
-        &:nth-child(3) { background-color: #27c93f; }
-      }
-    }
-  
-    .editor-content {
-      padding: 20px;
-      font-family: monospace;
-      font-size: 14px;
-      color: #333;
-      
-      h3 {
-        color: #6b46c1;
-        margin-bottom: 1rem;
-      }
-      
-      pre {
-        background: #f5f5f5;
-        padding: 1rem;
+        top: 10px;
+        right: 10px;
+        background: $primary-pink;
+        color: white;
+        padding: 0.25rem 0.75rem;
         border-radius: 4px;
-        margin-top: 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        box-shadow: 0 2px 10px rgba($primary-pink, 0.4);
       }
     }
   }
-  
-  // Footer with fade-in effect
-  .footer {
-    background-color: #f9f9f9;
-    padding: 3rem 1.5rem;
-    opacity: 0;
-    animation: fadeIn 1s ease-in forwards;
-    animation-delay: 0.5s;
-  
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+}
+
+// Editor preview with enhanced pink neon border
+.editor-preview {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 2px solid transparent;
+  animation: neonGlow 2s linear infinite alternate;
+
+  @keyframes neonGlow {
+    from { border-color: $primary-pink; box-shadow: 0px 0px 12px $primary-pink; }
+    to { border-color: $secondary-purple; box-shadow: 0px 0px 20px $secondary-purple; }
+  }
+
+  .editor-toolbar {
+    background: #f5f5f5;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    
+    .editor-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 6px;
+      
+      &:nth-child(1) { background-color: #ff5f56; }
+      &:nth-child(2) { background-color: #ffbd2e; }
+      &:nth-child(3) { background-color: #27c93f; }
+    }
+  }
+
+  .editor-content {
+    padding: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: $rich-black;
+    
+    h3 {
+      color: $primary-pink;
+      margin-bottom: 1rem;
     }
     
-    .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    pre {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-top: 1rem;
+      border-left: 3px solid $primary-pink;
+    }
+    
+    p {
+      line-height: 1.7;
+    }
+    
+    code {
+      color: $primary-pink;
+      background-color: rgba($primary-pink, 0.1);
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+    }
+  }
+}
+
+// Button styling
+.button {
+  &.is-primary {
+    background-color: $primary-pink;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: darken($primary-pink, 5%);
+      box-shadow: 0 4px 14px rgba($primary-pink, 0.4);
+      transform: translateY(-2px);
+    }
+  }
+  
+  &.is-outlined {
+    border-color: $primary-pink;
+    color: $primary-pink;
+    
+    &:hover {
+      background-color: rgba($primary-pink, 0.1);
+      border-color: $primary-pink;
+      color: darken($primary-pink, 10%);
+    }
+  }
+}
+
+// Navigation links
+.navbar {
+  &.is-transparent {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    
+    .navbar-item {
+      color: $midnight-blue;
       
-      li {
-        margin-bottom: 0.5rem;
+      &:hover {
+        color: $primary-pink;
+      }
+    }
+    
+    .navbar-link::after {
+      border-color: $primary-pink;
+    }
+  }
+  
+  .navbar-brand {
+    .navbar-item {
+      font-weight: 700;
+      font-size: 1.2rem;
+      
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+}
+
+// Footer with fade-in effect
+.footer {
+  background-color: $warm-gray;
+  padding: 3rem 1.5rem;
+  opacity: 0;
+  animation: fadeIn 1s ease-in forwards;
+  animation-delay: 0.5s;
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: 0.5rem;
+      
+      a {
+        color: $midnight-blue;
+        transition: color 0.3s ease;
         
-        a {
-          color: #4a4a4a;
-          
-          &:hover {
-            color: #3273dc;
-          }
+        &:hover {
+          color: $primary-pink;
+        }
+      }
+    }
+  }
+  
+  .social-links {
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba($primary-pink, 0.1);
+      color: $primary-pink;
+      margin-right: 8px;
+      transition: all 0.3s ease;
+      
+      &:hover {
+        background: $primary-pink;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba($primary-pink, 0.4);
+      }
+    }
+  }
+  
+  hr {
+    background-color: #e0e0e0;
+    margin: 2rem 0;
+  }
+  
+  .copyright {
+    color: #8a8a8a;
+    font-size: 0.9rem;
+    
+    a {
+      color: $primary-pink;
+    }
+  }
+}
+
+// Notification styling
+.notification {
+  border-radius: 8px;
+  border-left: 4px solid;
+  padding: 1rem 1.25rem;
+  
+  &.is-primary {
+    background-color: rgba($primary-pink, 0.1);
+    border-left-color: $primary-pink;
+    color: darken($primary-pink, 20%);
+  }
+  
+  &.is-info {
+    background-color: rgba($deep-teal, 0.1);
+    border-left-color: $deep-teal;
+    color: darken($deep-teal, 15%);
+  }
+}
+
+// Progress bar
+.progress {
+  &.is-primary {
+    &::-webkit-progress-value {
+      background: linear-gradient(to right, $primary-pink, $secondary-purple);
+    }
+    &::-moz-progress-bar {
+      background: linear-gradient(to right, $primary-pink, $secondary-purple);
+    }
+  }
+}
+
+// Responsive adjustments
+@media screen and (max-width: 768px) {
+  .hero-body {
+    padding: 3rem 1.5rem;
+  }
+  
+  .editor-preview {
+    margin-top: 2rem;
+  }
+  
+  .title {
+    font-size: 1.75rem !important;
+  }
+  
+  .footer {
+    text-align: center;
+    
+    .social-links {
+      margin-top: 1.5rem;
+    }
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  body.supports-dark-mode {
+    background-color: $rich-black;
+    color: #f5f5f5;
+    
+    .card {
+      background-color: #222;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      
+      .card-content {
+        .title, .subtitle {
+          color: #f5f5f5;
+        }
+        
+        .content {
+          color: #e0e0e0;
         }
       }
     }
     
-    hr {
-      background-color: #e0e0e0;
-      margin: 2rem 0;
-    }
-  }
-  
-  // Responsive adjustments
-  @media screen and (max-width: 768px) {
-    .hero-body {
-      padding: 3rem 1.5rem;
+    .editor-preview {
+      background: #222;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      
+      .editor-toolbar {
+        background: #333;
+        border-color: #444;
+      }
+      
+      .editor-content {
+        color: #f5f5f5;
+        
+        pre {
+          background: #333;
+        }
+      }
     }
     
-    .editor-preview {
-      margin-top: 2rem;
+    .footer {
+      background-color: #222;
+      
+      .footer-links li a {
+        color: #e0e0e0;
+      }
+      
+      hr {
+        background-color: #444;
+      }
+      
+      .copyright {
+        color: #aaa;
+      }
     }
   }
-  
+}

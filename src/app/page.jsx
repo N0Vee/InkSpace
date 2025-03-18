@@ -1,127 +1,66 @@
-import { getBlogs } from './lib/blogs';
-import EditorContent from './lib/EditorContent';
+'use client'
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import HeroSection from './components/HeroSection';
+import FeaturedSection from './components/FeaturedSection';
+import BlogSection from './components/BlogSection';
+import EditorContent from './lib/EditorContent';
+import Loading from './components/Loading'
 import './styles/home.scss';
 
-
 export default function Home() {
+    const [blogs, setBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        async function fetchBlogs() {
+            try {
+                const res = await fetch('/api/blogs');
+                if (!res.ok) {
+                    throw new Error('Failed to fetch blogs');
+                }
+                const data = await res.json();
+                setBlogs(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchBlogs();
+    }, []);
+
+    if (loading) {
+        return <Loading />;
+      }
     
-    const blogs = getBlogs();
-    const featuredBlogs = blogs.slice(0, 3); // Get first 3 blogs as featured
+      if (error) {
+        return <div className="error-container">
+          <div className="container has-text-centered py-6">
+            <h2 className="title is-3 has-text-danger">Oops!</h2>
+            <p className="subtitle">{error}</p>
+            <button className="button is-primary mt-4" onClick={() => window.location.reload()}>
+              Try Again
+            </button>
+          </div>
+        </div>;
+      }
+
+    const featuredBlogs = blogs.slice(0, 3); // Get the first 3 blogs as featured
 
     return (
         <div className="inkspace-layout">
             {/* Hero Section */}
-            <section className="hero is-medium is-link">
-                <div className="hero-body">
-                    <div className="container">
-                        <h1 className="title is-1">
-                            <span className="gradient-text">Inkspace</span>
-                        </h1>
-                        <h2 className="subtitle is-3">
-                            A platform for reading and writing blogs about Web Technology
-                        </h2>
-                        <p className="mb-5">
-                            Featuring a powerful Markdown Editor and AI-powered content generation using Gemini
-                        </p>
-                        <div className="buttons">
-                            <Link legacyBehavior href="/write">
-                                <a className="button is-primary is-medium">Start Writing</a>
-                            </Link>
-                            <Link legacyBehavior href="/blogs">
-                                <a className="button is-light is-medium">Explore Blogs</a>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <HeroSection />
 
             {/* Featured Blogs Section */}
-            <section className="section">
-                <div className="container">
-                    <h2 className="title has-text-centered">
-                        Featured <span className="gradient-text">Blogs</span>
-                    </h2>
-                    <p className="subtitle has-text-centered mb-6">
-                        Discover the best content from our community
-                    </p>
-
-                    <div className="columns is-multiline">
-                        {featuredBlogs.map((blog) => (
-                            <div key={blog.filename} className="column is-one-third">
-                                <Link legacyBehavior href={`/blog/${blog.filename.replace('.md', '')}`}>
-                                    <a className="featured-blog-card">
-                                        <div className="card">
-                                            <div className="card-image">
-                                                <figure className="image is-3by2">
-                                                    <img src={blog.image} alt={blog.title} className="blog-thumbnail" />
-                                                </figure>
-                                            </div>
-                                            <div className="card-content">
-                                                <p className="title is-4">{blog.title}</p>
-                                                <div className="content">
-                                                    <div dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 100) + '...' }} />
-                                                </div>
-                                                <div className="mt-4 is-flex is-justify-content-space-between is-align-items-center">
-                                                    <span className="tag is-info">Featured</span>
-                                                    <span className="is-size-7">5 min read</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="has-text-centered mt-6">
-                        <Link legacyBehavior href="/blogs">
-                            <a className="button is-link is-outlined">View All Featured</a>
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <FeaturedSection featuredBlogs={featuredBlogs} />
 
             {/* All Blogs Section */}
-            <section className="section has-background-light">
-                <div className="container">
-                    <h2 className="title has-text-centered">
-                        <span className='has-text-black'>All </span><span className="gradient-text">Blogs</span>
-                    </h2>
-                    <p className="subtitle has-text-centered mb-6">
-                        Explore all articles on web technology
-                    </p>
-
-                    <div className="columns is-multiline">
-                        {blogs.map((blog) => (
-                            <div key={blog.filename} className="column is-one-third-desktop is-half-tablet">
-                                <Link legacyBehavior href={`/blog/${blog.filename.replace('.md', '')}`}>
-                                    <a className="blog-card">
-                                        <div className="card">
-                                            <div className="card-content">
-                                                <p className="title is-4 has-text-white">{blog.title}</p>
-                                                <div className="content">
-                                                    <div dangerouslySetInnerHTML={{ __html: blog.content.slice(0, 120) + '...' }} />
-                                                </div>
-                                                <div className="mt-4 is-flex is-justify-content-space-between is-align-items-center">
-                                                    <span className="tag is-info">Web Tech</span>
-                                                    <button className="button is-small is-outlined is-link">Read More</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </Link>
-                            </div>
-                        ))}
-                    </div>
-
-                    <div className="has-text-centered mt-6">
-                        <Link legacyBehavior href="/blogs">
-                            <a className="button is-link">View All Blogs</a>
-                        </Link>
-                    </div>
-                </div>
-            </section>
+            <BlogSection blogs={ blogs }/>
 
             {/* Write New Section */}
             <section className="section">
@@ -171,13 +110,13 @@ export default function Home() {
                             <h3 className="title is-4">
                                 <span className="gradient-text">Inkspace</span>
                             </h3>
-                            <p>
+                            <p className='has-text-weight-bold'>
                                 A platform for reading and writing blogs about Web Technology,
                                 featuring a Markdown Editor and AI-powered content generation.
                             </p>
                         </div>
                         <div className="column is-2 is-offset-1">
-                            <h3 className="title is-5">Explore</h3>
+                            <h3 className="title is-5 has-text-dark">Explore</h3>
                             <ul className="footer-links">
                                 <li><Link legacyBehavior href="/"><a>Home</a></Link></li>
                                 <li><Link legacyBehavior href="/blogs"><a>Blogs</a></Link></li>
@@ -186,7 +125,7 @@ export default function Home() {
                             </ul>
                         </div>
                         <div className="column is-2">
-                            <h3 className="title is-5">Technology</h3>
+                            <h3 className="title is-5 has-text-dark">Technology</h3>
                             <ul className="footer-links">
                                 <li><a href="#">Next.js</a></li>
                                 <li><a href="#">Bulma</a></li>
@@ -195,7 +134,7 @@ export default function Home() {
                             </ul>
                         </div>
                         <div className="column is-2">
-                            <h3 className="title is-5">Connect</h3>
+                            <h3 className="title is-5 has-text-dark">Connect</h3>
                             <ul className="footer-links">
                                 <li><a href="#">Twitter</a></li>
                                 <li><a href="#">GitHub</a></li>

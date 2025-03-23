@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { marked } from 'marked';
 
-// Extract first image from markdown
 const extractImage = (content) => {
   const match = content.match(/!\[.*?\]\((.*?)\)/);
   return match ? match[1] : null;

@@ -42,7 +42,7 @@ export default function BlogSection({ blogs }) {
                 </p>
 
                 <div className="columns is-multiline">
-                    {blogs.map((blog) => (
+                    {blogs.slice(0,6).map((blog) => (
                         <motion.div key={blog.filename} className="column is-one-third-desktop is-half-tablet"
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}

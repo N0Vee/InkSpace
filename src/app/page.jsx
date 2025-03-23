@@ -49,7 +49,8 @@ export default function Home() {
         </div>;
     }
 
-    const featuredBlogs = blogs.slice(0, 3); // Get the first 3 blogs as featured
+    const shuffledBlogs = blogs.sort(() => 0.5 - Math.random());
+    const featuredBlogs = shuffledBlogs.slice(0, 3); // Get the first 3 blogs as featured
 
     return (
         <div className="inkspace-layout">

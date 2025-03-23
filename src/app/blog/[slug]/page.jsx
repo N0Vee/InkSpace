@@ -3,9 +3,8 @@ import { marked } from 'marked';
 import hljs from 'highlight.js';
 import { CalendarIcon, UserIcon, TagIcon, ClockIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import '../../styles/blog.scss';
-// Import a highlight.js CSS theme
 import 'highlight.js/styles/atom-one-dark.css';
-import TableOfContent from '@/app/components/TableOfContent';
+import Toc from '@/app/components/Toc';
 
 // Function to estimate reading time based on content length
 const calculateReadingTime = (content) => {
@@ -37,7 +36,6 @@ const setupMarked = () => {
 </pre>`;
     };
 
-    // Custom inline code renderer (for inline code snippets)
     renderer.codespan = (code) => {
         return `<code class="inline-code">${code}</code>`;
     };
@@ -59,12 +57,12 @@ export default async function BlogPost({ params }) {
     const markedInstance = setupMarked();
 
     try {
-        // Use absolute URL format to avoid parsing issues
+       
         const apiUrl = new URL(`/api/blogs/${slug}`, process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000').toString();
 
-        // Fetch blog data from API
+        
         const response = await fetch(apiUrl, {
-            next: { revalidate: 3600 } // Revalidate cache every hour, adjust as needed
+            next: { revalidate: 3600 }
         });
 
         if (!response.ok) {
@@ -72,7 +70,6 @@ export default async function BlogPost({ params }) {
         }
 
         const blog = await response.json();
-        console.log(blog)
 
         // Use markedInstance.parse to convert markdown content to HTML
         const contentHtml = markedInstance.parse(blog.content);
@@ -83,12 +80,12 @@ export default async function BlogPost({ params }) {
 
         return (
             <>
-                
+
                 <div className="blog-layout">
-                    <TableOfContent />
+                    <Toc />
 
                     <article className="blog-post-container">
-                        
+
                         {/* Blog Header */}
                         <header className="blog-header">
                             <div className="blog-meta">
@@ -183,51 +180,8 @@ export default async function BlogPost({ params }) {
                                 </div>
                             </div>
                         )}
-
-                        {/* Blog Navigation */}
-                        <div className="blog-navigation">
-                            {blog.previousPost && (
-                                <a href={`/blog/${blog.previousPost.slug}`} className="nav-link prev">
-                                    <ChevronLeftIcon className="icon" />
-                                    <span className="nav-text">
-                                        <span className="nav-label">Previous</span>
-                                        <span className="nav-title">{blog.previousPost.title}</span>
-                                    </span>
-                                </a>
-                            )}
-                            {blog.nextPost && (
-                                <a href={`/blog/${blog.nextPost.slug}`} className="nav-link next">
-                                    <span className="nav-text">
-                                        <span className="nav-label">Next</span>
-                                        <span className="nav-title">{blog.nextPost.title}</span>
-                                    </span>
-                                    <ChevronRightIcon className="icon" />
-                                </a>
-                            )}
-                        </div>
+                
                     </article>
-
-                    {/* Related Posts */}
-                    {relatedPosts.length > 0 && (
-                        <section className="related-posts">
-                            <h3 className="gradient-text">Related Posts</h3>
-                            <div className="related-posts-grid">
-                                {relatedPosts.map((post, index) => (
-                                    <a href={`/blog/${post.slug}`} key={index} className="related-post-card">
-                                        {post.image && (
-                                            <div className="post-image">
-                                                <img src={post.image} alt={post.title} />
-                                            </div>
-                                        )}
-                                        <div className="post-content">
-                                            <h4>{post.title}</h4>
-                                            {post.date && <span className="post-date">{post.date}</span>}
-                                        </div>
-                                    </a>
-                                ))}
-                            </div>
-                        </section>
-                    )}
                 </div>
             </>
 

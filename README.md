@@ -1,23 +1,19 @@
 
 ## Inkspace ✍️
 
-**Inkspace** is a platform for reading and writing blogs about **Web Technology**, featuring a Markdown Editor and AI-powered content generation using Gemini 🎯
+**Inkspace** คือแพลตฟอร์มสำหรับอ่านบล็อกเกี่ยวกับ **Web Technology** 🎯
 
 ---
 
-## 🌟 **Features**
-✅ Read blogs about **Web Tech** easily 📖  
-✅ Write blogs using **Markdown + AI (Gemini)** 🧠✨  
-✅ Supports **Editor.js** for content management  
-✅ Built with **Next.js, Bulma, SCSS** for a fast and beautiful UI ⚡  
+## 🌟 Features
+- อ่านบล็อก **Web Tech** ได้ง่าย 📖  
+- เขียนบล็อกด้วย **Markdown** 📝  
+- สร้างด้วย **Next.js, Bulma, SCSS**  
 
 ---
 
-## 🚀 **Tech Stack**
-🔹 **Frontend:** Next.js + SCSS + Bulma  
-🔹 **Editor:** Editor.js (Markdown support)  
-🔹 **AI Integration:** Google Gemini API  
-🔹 **Database:** Firestore or Supabase *(depending on setup)*  
-🔹 **Deployment:** Vercel or Firebase Hosting  
+## 🚀 Tech Stack
+- **Frontend:** Next.js + SCSS + Bulma  
+- **Deployment:** Vercel 
 
-
+---

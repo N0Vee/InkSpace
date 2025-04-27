@@ -1,6 +1,6 @@
 # Vue.js: The Progressive JavaScript Framework
 
-![Vue.js Logo](https://images.seeklogo.com/logo-png/40/1/vue-js-logo-png_seeklogo-409842.png)
+![Vue.js Logo](https://www.rapidbrains.com/assets/img/services/rapidbrains-vuejs.webp)
 
 ## What is Vue.js?
 

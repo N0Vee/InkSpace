@@ -69,23 +69,23 @@ export default function Home() {
                     <div className="columns is-vcentered">
                         <div className="column is-6">
                             <h2 className="title">
-                                Start <span className="gradient-text">Writing</span> Today
+                                Start <span className="gradient-text">Reading</span> Today
                             </h2>
                             <p className="subtitle">
-                                Share your knowledge with our community
+                                Discover the best Web Technology content in our community
                             </p>
                             <div className="content">
                                 <p>
-                                    Inkspace gives you powerful tools to create engaging content:
+                                    Reading blogs on Inkspace helps you:
                                 </p>
-                                <ul>
-                                    <li>Feature-rich Markdown Editor</li>
-                                    <li>AI-powered content generation with Gemini</li>
-                                    <li>Editor.js support for advanced content management</li>
-                                    <li>Beautiful, responsive design</li>
+                                <ul className="benefits-list">
+                                    <li>Stay updated with the latest <strong className='gradient-text'>Web Technology</strong> trends 🔍</li>
+                                    <li>Learn new techniques and insights from industry experts 🧠</li>
+                                    <li>Discover tools and frameworks to boost your development workflow 🛠️</li>
+                                    <li>Understand complex technologies through clear and easy-to-read articles 📚</li>
                                 </ul>
-                                <Link legacyBehavior href="/write">
-                                    <a className="button is-primary mt-4">Create New Blog</a>
+                                <Link legacyBehavior href="/blogs">
+                                    <a className="button is-primary is-medium mt-4">Start Reading</a>
                                 </Link>
                             </div>
                         </div>
@@ -112,8 +112,7 @@ export default function Home() {
                                 <span className="gradient-text">Inkspace</span>
                             </h3>
                             <p className='has-text-weight-bold'>
-                                A platform for reading and writing blogs about Web Technology,
-                                featuring a Markdown Editor and AI-powered content generation.
+                                A platform for reading blogs about Web Technology.
                             </p>
                         </div>
                         <div className="column is-2 is-offset-1">
@@ -121,8 +120,6 @@ export default function Home() {
                             <ul className="footer-links">
                                 <li><Link legacyBehavior href="/"><a>Home</a></Link></li>
                                 <li><Link legacyBehavior href="/blogs"><a>Blogs</a></Link></li>
-                                <li><Link legacyBehavior href="/write"><a>Write</a></Link></li>
-                                <li><Link legacyBehavior href="/about"><a>About</a></Link></li>
                             </ul>
                         </div>
                         <div className="column is-2">
@@ -131,16 +128,13 @@ export default function Home() {
                                 <li><a href="#">Next.js</a></li>
                                 <li><a href="#">Bulma</a></li>
                                 <li><a href="#">SCSS</a></li>
-                                <li><a href="#">Gemini AI</a></li>
                             </ul>
                         </div>
                         <div className="column is-2">
                             <h3 className="title is-5 has-text-dark">Connect</h3>
                             <ul className="footer-links">
-                                <li><a href="#">Twitter</a></li>
-                                <li><a href="#">GitHub</a></li>
-                                <li><a href="#">LinkedIn</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="https://github.com/N0Vee/InkSpace">GitHub</a></li>
+                                <li><a href="mailto:wanichanon.work@gmail.com">Contact</a></li>
                             </ul>
                         </div>
                     </div>

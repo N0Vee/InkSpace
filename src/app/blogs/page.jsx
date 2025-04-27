@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'
 import HeroSection from '../components/HeroSection';
 import Loading from '../components/Loading'
 import '../styles/home.scss';
@@ -88,27 +89,6 @@ export default function Page() {
                         </div>
                     </div>
 
-                    <div id="navMenu" className="navbar-menu">
-                        <div className="navbar-start">
-                            
-                        </div>
-
-                        <div className="navbar-center">
-                            <a href="/" className="navbar-item">
-                                Home
-                            </a>
-                            <a href="/write" className="navbar-item highlight">
-                                <span className="icon">
-                                    <i className="fas fa-pen"></i>
-                                </span>
-                                <span>Start Writing</span>
-                            </a>
-                        </div>
-
-                        <div className="navbar-end">
-                            
-                        </div>
-                    </div>
                 </div>
             </nav>
 
@@ -129,7 +109,13 @@ export default function Page() {
                                         <div className="card">
                                             <div className="card-image">
                                                 <figure className="image is-3by2">
-                                                    <img src={blog.image} alt={blog.title} className="blog-thumbnail" />
+                                                    <Image
+                                                        width={500}
+                                                        height={500}
+                                                        src={blog.image}
+                                                        alt={blog.title}
+                                                        className="blog-thumbnail"
+                                                    />                                                
                                                 </figure>
                                             </div>
                                             <div className="card-content">

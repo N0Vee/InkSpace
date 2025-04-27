@@ -17,8 +17,8 @@ const HighlightText = ({ text }) => {
 const BlogComponent = () => {
   return (
     <div className="editor-content">
-      <h3># Write your amazing tech blog</h3>
-      <p>Share your innovative ideas and thoughts here...</p>
+      <h3># Read Web Technology Blogs</h3>
+      <p>Discover new ideas and knowledge here...</p>
       <pre>
         <code>
           <Typewriter
